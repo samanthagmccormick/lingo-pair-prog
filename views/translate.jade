@@ -1,0 +1,15 @@
+extends layout
+
+block content
+	h1 Translate
+
+	h2 Translate a Word
+	form(method="post" action="/translateIt")
+		input(type="text" name="word" placeholder="Word to Translate")
+		input(type="text" name="originalLanguage" placeholder="Language to Translate From")
+		input(type="text" name="newLanguage" placeholder="Language to Translate To")
+		button(type="submit") Translate
+
+	h3 Your Translation:
+	if results
+		p #{results.translation}
