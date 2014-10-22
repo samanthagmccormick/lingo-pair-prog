@@ -1,4 +1,8 @@
 var BeGlobal = require('node-beglobal');
+var randomWords = require('random-words');
+
+
+var wordList = randomWords(10);
 
 //initialize the BeGlobal API
 var beglobal = new BeGlobal.BeglobalAPI({
@@ -14,7 +18,9 @@ var indexController = {
 		res.render('translate');
 	},
 	quiz: function(req, res) {
-		res.render('quiz');
+		res.render('quiz', {
+			wordList: wordList
+		});
 	},
 	progress: function(req, res) {
 		res.render('progress');
@@ -25,8 +31,6 @@ var indexController = {
 	translateIt: function(req, res) {
 		var formData = req.body;
 		console.log("req.body=", formData);
-
-
 
 		beglobal.translations.translate(
 		  {text: formData.word, from: formData.originalLanguage, to: formData.newLanguage},
@@ -41,6 +45,30 @@ var indexController = {
 		    });
 		  }
 		);
+
+	},
+	button: function(req, res){
+		var translationList = req.body;
+		console.log('List of Translations: ', formEntry);
+
+		// for(var i = 0; i < translationList; i++) {
+
+		// beglobal.translations.translate(
+		//   {text: formData.word, from: formData.originalLanguage, to: formData.newLanguage},
+		//   function(err, results) {
+		//     if (err) {
+		//       console.log('Bad entry');
+		//     }
+		//     console.log("these are the results of my translation:", results);
+		    
+		//     res.render('translate', {
+		//     	results: results
+		//     });
+		//   }
+		// );
+
+		// }
+
 
 	}
 

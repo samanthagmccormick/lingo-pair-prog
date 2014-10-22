@@ -1,10 +1,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+require('./models/seeds/userSeed.js');
 
 // Require mongoose
 var mongoose = require('mongoose');
 
 var indexController = require('./controllers/index.js');
+var quizController = require('./controllers/quiz.js');
 
 // Connect to mongodb database
 mongoose.connect('mongodb://localhost/lingo');
@@ -24,6 +26,13 @@ app.get('/sorry', indexController.sorry);
 
 // Form submissions
 app.post('/translateIt', indexController.translateIt);
+
+// Route for Quizzes
+app.get('/api/getQuiz', quizController.getQuiz);
+// app.get('.checker', indexController.button);
+
+// Form for submitting quiz answers
+app.post('/button', indexController.button);
 
 
 var server = app.listen(8923, function() {

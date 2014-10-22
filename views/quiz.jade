@@ -2,3 +2,18 @@ extends layout
 
 block content
 	h1 Quiz
+
+	form#new-quiz
+		input(type="text" name="language" placeholder="Language")
+		input(type="submit")
+
+	h2 Quiz Questions
+	ul#question-list
+	
+	form(action="/button" method="post")
+		for word in wordList
+			//- Print an LI for each word
+			li
+				h5=word
+				input(type="text" name="translation" placeholder="translation")
+		input.checker(type="submit")
