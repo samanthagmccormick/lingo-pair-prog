@@ -5,9 +5,13 @@ block content
 	ul#question-list
 
 	h5 Language Type Cuz You Have NO CHOICE: #{newQuiz.language}
+	h3 Quiz ID: #{newQuiz._id}
 
-	for word in newQuiz.words
-		li
-			h5= word
-			input(type="text" name="translation" placeholder="translation")
-	input(type="button" value="Submit Answers" id="submitButton")
+	ul#music-list
+	div.quiz(data-id: quiz._id)
+		for word in newQuiz.words
+			li
+				div.question
+					h5= word
+					input(type="text" name="translation" placeholder="translation" class="input")
+		input(type="button" value="Submit Answers" id="submitButton")

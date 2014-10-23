@@ -9,16 +9,23 @@ $(function(){
 	$('#submitButton').on('click', function(e){
 		console.log("Clicked the button");
 
-		// FROM CHRIS' NOTES
-		var results = $('.question input').map(function(el){
-			return el.val()
-		}).toArray();
+		var input = $('.input').val();
+		console.log('First input: ', input);
+	
+		var results = [];
 
 		// FROM CHRIS' NOTES
-		$.post('/checkQuiz', {
-			id: $('quiz').attr('data-id'),
-			results: results
-		});
+		results = $('.input').map(function(el){
+			return el.val();
+		}).toArray();
+
+		console.log('Results:', results);
+
+		// // FROM CHRIS' NOTES
+		// $.post('/checkQuiz', {
+		// 	id: $('quiz').attr('data-id'),
+		// 	results: results
+		// });
 
 	});
 

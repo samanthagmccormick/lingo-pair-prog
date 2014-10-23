@@ -62,7 +62,13 @@ var indexController = {
 
 	},
 	checkQuiz: function(req, res) {
-		res.redirect('quiz');
+		// 1: Find all users
+		User.find({}, function(err, results) {
+		// 2. Send back the results (the list of all music)
+			res.send(results);
+		});
+
+		res.render('quiz');
 		res.send("Checking teh quiz");
 	}
 
