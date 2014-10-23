@@ -1,6 +1,6 @@
 var BeGlobal = require('node-beglobal');
+var User = require('../models/user.js');
 var randomWords = require('random-words');
-
 
 var wordList = randomWords(10);
 
@@ -18,9 +18,23 @@ var indexController = {
 		res.render('translate');
 	},
 	quiz: function(req, res) {
-		res.render('quiz', {
-			wordList: wordList
+
+		// Create a new quiz with 10 random questions
+		// This will also generate an ID for each of your quizzes
+		var newQuiz = new User({
+			language: 'eng',
+			words: randomWords(10),
+			completed: false
 		});
+
+		// Save your new quiz to the database
+		newQuiz.save(function(err, result){
+			res.render('quiz', {
+				newQuiz: newQuiz
+			});
+		});
+
+
 	},
 	progress: function(req, res) {
 		res.render('progress');
@@ -47,29 +61,9 @@ var indexController = {
 		);
 
 	},
-	button: function(req, res){
-		var translationList = req.body;
-		console.log('List of Translations: ', formEntry);
-
-		// for(var i = 0; i < translationList; i++) {
-
-		// beglobal.translations.translate(
-		//   {text: formData.word, from: formData.originalLanguage, to: formData.newLanguage},
-		//   function(err, results) {
-		//     if (err) {
-		//       console.log('Bad entry');
-		//     }
-		//     console.log("these are the results of my translation:", results);
-		    
-		//     res.render('translate', {
-		//     	results: results
-		//     });
-		//   }
-		// );
-
-		// }
-
-
+	checkQuiz: function(req, res) {
+		res.redirect('quiz');
+		res.send("Checking teh quiz");
 	}
 
 };
