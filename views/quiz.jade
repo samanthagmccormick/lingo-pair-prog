@@ -10,8 +10,7 @@ block content
 	ul#music-list
 	div.quiz(data-id: quiz._id)
 		for word in newQuiz.words
-			li
-				div.question
-					h5= word
-					input(type="text" name="translation" placeholder="translation" class="input")
+			li.question
+				h5= word
+				input(type="text" name="translation" placeholder="translation" class="input")
 		input(type="button" value="Submit Answers" id="submitButton")

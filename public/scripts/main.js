@@ -12,20 +12,22 @@ $(function(){
 		var input = $('.input').val();
 		console.log('First input: ', input);
 	
-		var results = [];
+		var printVal = function(el) {
+			return el.val();
+		};
 
 		// FROM CHRIS' NOTES
-		results = $('.input').map(function(el){
-			return el.val();
+		var results = $('.question input').map(function(){
+			return $(this).val();
 		}).toArray();
 
 		console.log('Results:', results);
 
-		// // FROM CHRIS' NOTES
-		// $.post('/checkQuiz', {
-		// 	id: $('quiz').attr('data-id'),
-		// 	results: results
-		// });
+		// FROM CHRIS' NOTES
+		$.post('/checkQuiz', {
+			id: $('quiz').attr('data-id'),
+			results: results
+		});
 
 	});
 

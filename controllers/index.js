@@ -64,12 +64,12 @@ var indexController = {
 	checkQuiz: function(req, res) {
 		// 1: Find all users
 		User.find({}, function(err, results) {
-		// 2. Send back the results (the list of all music)
+		// 2. Send the results (all users) to the client
 			res.send(results);
 		});
 
-		res.render('quiz');
-		res.send("Checking teh quiz");
+		// res.render('quiz');
+		// res.send("Checking teh quiz");
 	}
 
 };
